@@ -1,11 +1,11 @@
 <template>
-  <div class="todo-item" v-bind:class="{'is-complete':todo.completed}">
+  <div class="todo-item" v-bind:class="{ 'is-complete': todo.completed }">
     <!-- : is condition -->
     <p>
-      <input type="checkbox" v-on:change="markComplete" />
+      <input type="checkbox" v-model="todo.completed" v-bind:id="todo.id" />
       <!--change event then call markComplete method-->
-      {{todo.title}}
-      <button @click="$emit('del-todo',todo)" class="del">x</button>
+      {{ todo.title }}
+      <button @click="$emit('del-todo', todo)" class="del">x</button>
       <!-- v-bind yerine @click kullanabiliriz, parametre olarak todo gönder, yukarı componente emit et-->
     </p>
   </div>
@@ -15,11 +15,6 @@
 export default {
   name: "TodoItem", //component name
   props: ["todo"], //Todos.vue'dan gelen todo prop
-  methods: {
-    markComplete() {
-      this.todo.completed = !this.todo.completed;
-    }
-  }
 };
 </script>
 
